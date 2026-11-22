@@ -1,0 +1,30 @@
+{
+  "name": "mcp-capability-registry",
+  "version": "0.1.0",
+  "description": "A local-first, deterministic inventory and change-comparison tool for Model Context Protocol server capabilities.",
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "bin": {
+    "mcp-capability-registry": "./dist/cli.js"
+  },
+  "exports": "./dist/index.js",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
+    "check": "npm run build && npm run typecheck && npm run test && npm run lint",
+    "demo": "npm run build && node dist/cli.js demo"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.15"
+  }
+}
