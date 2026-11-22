@@ -3,21 +3,53 @@
   "version": "0.1.0",
   "description": "A local-first, deterministic inventory and change-comparison tool for Model Context Protocol server capabilities.",
   "license": "MIT",
+  "author": "JSP-IT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSP-IT/mcp-capability-registry.git"
+  },
+  "homepage": "https://github.com/JSP-IT/mcp-capability-registry#readme",
+  "bugs": {
+    "url": "https://github.com/JSP-IT/mcp-capability-registry/issues"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "capabilities",
+    "api-governance",
+    "breaking-changes",
+    "diff",
+    "cli"
+  ],
   "type": "module",
   "engines": {
-    "node": ">=20"
+    "node": ">=22"
   },
   "bin": {
     "mcp-capability-registry": "./dist/cli.js"
   },
-  "exports": "./dist/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist/**/*.js",
+    "dist/**/*.d.ts",
+    "CHANGELOG.md"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "typecheck": "tsc -p tsconfig.check.json",
     "test": "vitest run",
-    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\"",
-    "check": "npm run build && npm run typecheck && npm run test && npm run lint",
-    "demo": "npm run build && node dist/cli.js demo"
+    "lint": "eslint \"src/**/*.ts\" \"test/**/*.ts\" vitest.config.ts",
+    "check": "npm run typecheck && npm run build && npm run test && npm run lint",
+    "demo": "npm run build && node dist/cli.js demo",
+    "prepublishOnly": "npm run check"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

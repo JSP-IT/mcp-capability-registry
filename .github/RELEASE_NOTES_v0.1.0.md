@@ -4,12 +4,13 @@ The first public release provides local-first, offline MCP capability inventory 
 
 ## Highlights
 
-- Normalize tools, resources, resource templates, prompts, and server metadata
-- Compare two JSON capability snapshots deterministically
-- Detect added, removed, and modified capabilities
-- Mark removals and newly required inputs conservatively as breaking
-- Report unsupported protocol fields and unrecognized protocol versions
-- Redact common credential, token, secret, and private-key fields
+- Normalize tools, resources, resource templates, prompts, server identity, server capabilities, and instructions
+- Compare two capability files deterministically: raw MCP JSON or previously written snapshots
+- Detect added, removed, and modified capabilities, with a summary count
+- Mark removals and newly required tool or prompt arguments conservatively as breaking
+- Report protocol-version, server, and instruction changes separately for manual review
+- Report unknown fields, malformed or duplicate entries, paginated input, and unrecognized protocol versions
+- Redact credential-like values while keeping JSON Schema property names comparable
 - Provide synthetic before/after examples and a runnable demo
 
 ## Safety
@@ -23,10 +24,12 @@ Recognition metadata is included for:
 - `2024-11-05`
 - `2025-03-26`
 - `2025-06-18`
+- `2025-11-25`
+- `2026-07-28`
 
-Unknown constructs are preserved under transparent `unsupported` reporting rather than silently discarded.
+Unknown versions are still processed and reported under `unsupported` rather than rejected.
 
 ## Requirements
 
-- Node.js 20 or newer
-- npm
+- Node.js 22 or newer
+- npm 10 or newer
