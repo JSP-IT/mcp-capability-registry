@@ -1,0 +1,33 @@
+{
+  "protocolVersion": "2025-06-18",
+  "name": "inventory-server",
+  "title": "Inventory Example",
+  "tools": [
+    {
+      "name": "lookup_product",
+      "description": "Look up a product.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "sku": { "type": "string" }
+        }
+      }
+    }
+  ],
+  "resources": [
+    {
+      "uri": "inventory://products/current",
+      "name": "Current inventory",
+      "description": "Current product inventory."
+    }
+  ],
+  "prompts": [
+    {
+      "name": "summarize_inventory",
+      "description": "Summarize inventory.",
+      "arguments": [
+        { "name": "format", "required": false }
+      ]
+    }
+  ]
+}
